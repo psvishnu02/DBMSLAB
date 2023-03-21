@@ -1,0 +1,594 @@
+1.2 DML COMMANDS
+------------------- 
+      a) DML COMMANDS-INSERT
+      __________________________
+
+  1.      Insert values in EMPLOYEE table.
+
+i/p
+-----
+mysql> insert into employee(ssn,name,city,dob,adhar_no) values(44444,'JOHN','NEWYORK',2000,659875464);
+mysql>  insert into employee(ssn,name,city,dob,adhar_no) values(54694,'Jorge','mangalore',2001,265987554);
+mysql>  insert into employee(ssn,name,city,dob,adhar_no) values(54694,'varky','Bangalore',2002,205987554);
+
+o/p
+---------
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from employee;
++-------+-------+-----------+------+-----------+
+| SSN   | name  | city      | dob  | adhar_no  |
++-------+-------+-----------+------+-----------+
+| 44444 | JOHN  | NEWYORK   | 2000 | 659875464 |
+| 54694 | Jorge | mangalore | 2001 | 265987554 |
+| 54694 | varky | Bangalore | 2002 | 205987554 |
++-------+-------+-----------+------+-----------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------
+ 2.      Insert values in STUDENT table.
+
+i/p
+-----
+mysql> insert into student(roll_no,name,age,gender) values(12,'ROHAN S',16,'MALE');
+mysql> insert into student(roll_no,name,age,gender) values(13,'SOHAN S',17,'MALE');
+mysql> insert into student(roll_no,name,age,gender) values(15,'RISHAN S',15,'MALE');
+
+o/p
+---------
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from student;
++---------+----------+------+--------+
+| roll_no | name     | age  | gender |
++---------+----------+------+--------+
+|      12 | ROHAN S  |   16 | MALE   |
+|      13 | SOHAN S  |   17 | MALE   |
+|      15 | RISHAN S |   15 | MALE   |
++---------+----------+------+--------+
+3 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+ 3.      Insert values in INVOICE database. 
+
+i/p
+-----
+mysql> insert into product(p_id,pname,price) values(1234,'NIRMA',50);
+mysql> insert into product(p_id,pname,price) values(1235,'SANDAL',60);
+mysql> insert into product(p_id,pname,price) values(1236,'DOVE',75);
+mysql> insert into product(p_id,pname,price) values(1237,'CHOCHO',98);
+mysql> insert into product(p_id,pname,price) values(1238,'NIRAPARA',100);
+mysql> insert into product(p_id,pname,price) values(1239,'SUNFLOWEROIL',120);
+mysql> insert into product(p_id,pname,price) values(1210,'SUNLIGHT',140);
+mysql> insert into product(p_id,pname,price) values(1211,'JOLO',150);
+mysql> insert into product(p_id,pname,price) values(1212,'JAYA RICE',60);
+mysql> insert into product(p_id,pname,price) values(1213,'COLGATE',70);
+mysql> insert into product(p_id,pname,price) values(1214,'HARPIC',85);
+
+o/p
+---------
+Query OK, 1 row affected (0.04 sec)
+mysql> select * from product;
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   140 |
+| 1211 | JOLO         |   150 |
+| 1212 | JAYA RICE    |    60 |
+| 1213 | COLGATE      |    70 |
+| 1214 | HARPIC       |    85 |
+| 1234 | NIRMA        |    50 |
+| 1235 | SANDAL       |    60 |
+| 1236 | DOVE         |    75 |
+| 1237 | CHOCHO       |    98 |
+| 1238 | NIRAPARA     |   100 |
+| 1239 | SUNFLOWEROIL |   120 |
++------+--------------+-------+
+11 rows in set (0.00 sec)
+
+..............
+i/p
+-----
+mysql> insert into customer(c_id,name,address,city,ph_no) values(5698,'DAVID','david villa 123','sansford',36547892);
+mysql> insert into customer values(2345,'SAM','samshouse','manglore',45678974);
+mysql> insert into customer values(2346,'RAM','ramvilla','thirichy',45678977);
+mysql> insert into customer values(2347,'BEN','benmansion','chennai',45678978);
+mysql> insert into customer(c_id,name,address,city) values(2348,'VARUN','varunahouse','selam');
+mysql> insert into customer(c_id,name,address,city) values(2349,'ARJUN','pandavilla','calicut');
+mysql> insert into customer(c_id,name,address,city) values(2350,'KARUN','karunanilayam','alappuzha');
+mysql> insert into customer(c_id,name,address,city) values(2351,'RAVI','thodakkattukara','kochi');
+
+o/p
+---------
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from customer;
++------+-------+-----------------+-----------+----------+
+| c_id | name  | address         | city      | ph_no    |
++------+-------+-----------------+-----------+----------+
+| 2345 | SAM   | samshouse       | manglore  | 45678974 |
+| 2346 | RAM   | ramvilla        | thirichy  | 45678977 |
+| 2347 | BEN   | benmansion      | chennai   | 45678978 |
+| 2348 | VARUN | varunahouse     | selam     |     NULL |
+| 2349 | ARJUN | pandavilla      | calicut   |     NULL |
+| 2350 | KARUN | karunanilayam   | alappuzha |     NULL |
+| 2351 | RAVI  | thodakkattukara | kochi     |     NULL |
+| 5698 | DAVID | david villa 123 | sansford  | 36547892 |
++------+-------+-----------------+-----------+----------+
+8 rows in set (0.00 sec)
+
+
+...........
+i/p
+-----
+mysql> insert into Invoice_master values(100,2346,"2023-03-11");
+mysql> insert into Invoice_master values(101,2347,"2023-03-12");
+mysql> insert into Invoice_master values(102,2346,"2023-02-13");
+mysql> insert into Invoice_master values(103,2348,"2023-02-15");
+mysql> insert into Invoice_master values(104,2346,"2023-01-20");
+mysql> insert into Invoice_master values(105,2351,"2023-03-25");
+mysql> insert into Invoice_master values(106,2350,"2023-03-27");
+mysql> insert into Invoice_master values(107,2350,"2023-03-28");
+mysql> insert into Invoice_master values(108,2351,"2023-03-30");
+mysql> insert into Invoice_master values(109,5698,"2023-01-28");
+
+o/p
+---------
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from Invoice_master;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    100 |    2346 | 2023-03-11 |
+|    101 |    2347 | 2023-03-12 |
+|    102 |    2346 | 2023-02-13 |
+|    103 |    2348 | 2023-02-15 |
+|    104 |    2346 | 2023-01-20 |
+|    105 |    2351 | 2023-03-25 |
+|    106 |    2350 | 2023-03-27 |
+|    107 |    2350 | 2023-03-28 |
+|    108 |    2351 | 2023-03-30 |
+|    109 |    5698 | 2023-01-28 |
++--------+---------+------------+
+10 rows in set (0.00 sec)
+----------------
+
+i/p
+-----
+mysql> insert into Invoice_item values(100,1210,2);
+mysql> insert into Invoice_item values(100,1211,4);
+mysql> insert into Invoice_item values(100,1239,1);
+mysql> insert into Invoice_item values(100,1237,3);
+mysql> insert into Invoice_item values(108,1236,2);
+mysql> insert into Invoice_item values(105,1214,1);
+mysql> insert into Invoice_item values(107,1213,1);
+mysql> insert into Invoice_item values(104,1238,1);
+
+o/p
+---------
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from Invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    100 | 1210 |        2 |
+|    100 | 1211 |        4 |
+|    100 | 1239 |        1 |
+|    100 | 1237 |        3 |
+|    108 | 1236 |        2 |
+|    105 | 1214 |        1 |
+|    107 | 1213 |        1 |
+|    104 | 1238 |        1 |
++--------+------+----------+
+8 rows in set (0.00 sec)
+****************************************
+ b)DML COMMANDS- UPDATE
+_______________________________
+ 
+tables
+.........
+mysql> select * from product;
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   140 |
+| 1211 | JOLO         |   150 |
+| 1212 | JAYA RICE    |    60 |
+| 1213 | COLGATE      |    70 |
+| 1214 | HARPIC       |    85 |
+| 1234 | NIRMA        |    50 |
+| 1235 | SANDAL       |    60 |
+| 1236 | DOVE         |    75 |
+| 1237 | CHOCHO       |    98 |
+| 1238 | NIRAPARA     |   100 |
+| 1239 | SUNFLOWEROIL |   120 |
++------+--------------+-------+
+11 rows in set (0.00 sec)
+
+mysql> select * from customer;
++------+-------+-----------------+-----------+----------+
+| c_id | name  | address         | city      | ph_no    |
++------+-------+-----------------+-----------+----------+
+| 2345 | SAM   | samshouse       | manglore  | 45678974 |
+| 2346 | RAM   | ramvilla        | thirichy  | 45678977 |
+| 2347 | BEN   | benmansion      | chennai   | 45678978 |
+| 2348 | VARUN | varunahouse     | selam     |     NULL |
+| 2349 | ARJUN | pandavilla      | calicut   |     NULL |
+| 2350 | KARUN | karunanilayam   | alappuzha |     NULL |
+| 2351 | RAVI  | thodakkattukara | kochi     |     NULL |
+| 5698 | DAVID | david villa 123 | sansford  | 36547892 |
++------+-------+-----------------+-----------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    100 | 1210 |        2 |
+|    100 | 1211 |        4 |
+|    100 | 1239 |        1 |
+|    100 | 1237 |        3 |
+|    108 | 1236 |        2 |
+|    105 | 1214 |        1 |
+|    107 | 1213 |        1 |
+|    104 | 1238 |        1 |
++--------+------+----------+
+8 rows in set (0.00 sec)
+............
+ 1. Update the price of a particular product. 
+
+i/p
+-----
+mysql> update product set price=90 where P_id=1236;
+
+o/p
+---------
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from product;
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   140 |
+| 1211 | JOLO         |   150 |
+| 1212 | JAYA RICE    |    60 |
+| 1213 | COLGATE      |    70 |
+| 1214 | HARPIC       |    85 |
+| 1234 | NIRMA        |    50 |
+| 1235 | SANDAL       |    60 |
+| 1236 | DOVE         |    90 |
+| 1237 | CHOCHO       |    98 |
+| 1238 | NIRAPARA     |   100 |
+| 1239 | SUNFLOWEROIL |   120 |
++------+--------------+-------+
+11 rows in set (0.00 sec)
+__________________________________________________________
+
+
+ 2. Change the name of city ‘calicut’ to ‘kozhikode’ in the customer table. 
+i/p
+-----
+mysql> update customer set city="kozhikode" where city="calicut";
+
+o/p
+---------
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer;
++------+-------+-----------------+-----------+----------+
+| c_id | name  | address         | city      | ph_no    |
++------+-------+-----------------+-----------+----------+
+| 2345 | SAM   | samshouse       | manglore  | 45678974 |
+| 2346 | RAM   | ramvilla        | thirichy  | 45678977 |
+| 2347 | BEN   | benmansion      | chennai   | 45678978 |
+| 2348 | VARUN | varunahouse     | selam     |     NULL |
+| 2349 | ARJUN | pandavilla      | kozhikode |     NULL |
+| 2350 | KARUN | karunanilayam   | alappuzha |     NULL |
+| 2351 | RAVI  | thodakkattukara | kochi     |     NULL |
+| 5698 | DAVID | david villa 123 | sansford  | 36547892 |
++------+-------+-----------------+-----------+----------+
+8 rows in set (0.00 sec)
+_______________________________________________________
+
+  3. Update all prices with 2% of its original price. 
+
+i/p
+-----
+mysql> update product set price=price+(price*2/100);
+
+o/p
+---------
+Query OK, 11 rows affected (0.04 sec)
+Rows matched: 11  Changed: 11  Warnings: 0
+
+mysql> select * from product;
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   143 |
+| 1211 | JOLO         |   153 |
+| 1212 | JAYA RICE    |    61 |
+| 1213 | COLGATE      |    71 |
+| 1214 | HARPIC       |    87 |
+| 1234 | NIRMA        |    51 |
+| 1235 | SANDAL       |    61 |
+| 1236 | DOVE         |    92 |
+| 1237 | CHOCHO       |   100 |
+| 1238 | NIRAPARA     |   102 |
+| 1239 | SUNFLOWEROIL |   122 |
++------+--------------+-------+
+11 rows in set (0.00 sec)
+
+____________________________________________
+
+  4. Change the address, city, phone number of a particular customer. 
+
+i/p
+-----
+mysql> update customer set address="ramanilaya",city="madhurai",ph_no=78662035 where c_id=2346;
+
+
+o/p
+---------
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer;
++------+-------+-----------------+-----------+----------+
+| c_id | name  | address         | city      | ph_no    |
++------+-------+-----------------+-----------+----------+
+| 2345 | SAM   | samshouse       | manglore  | 45678974 |
+| 2346 | RAM   | ramanilaya      | madhurai  | 78662035 |
+| 2347 | BEN   | benmansion      | chennai   | 45678978 |
+| 2348 | VARUN | varunahouse     | selam     |     NULL |
+| 2349 | ARJUN | pandavilla      | kozhikode |     NULL |
+| 2350 | KARUN | karunanilayam   | alappuzha |     NULL |
+| 2351 | RAVI  | thodakkattukara | kochi     |     NULL |
+| 5698 | DAVID | david villa 123 | sansford  | 36547892 |
++------+-------+-----------------+-----------+----------+
+8 rows in set (0.00 sec)
+
+____________________________________________________
+
+ 5. Change the quantity of a purchased product of inv_id ‘101’
+
+i/p
+-----
+mysql> update Invoice_item set quantity=3 where Inv_id=104;
+ 
+o/p
+-----
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    100 | 1210 |        2 |
+|    100 | 1211 |        4 |
+|    100 | 1239 |        1 |
+|    100 | 1237 |        3 |
+|    108 | 1236 |        2 |
+|    105 | 1214 |        1 |
+|    107 | 1213 |        1 |
+|    104 | 1238 |        3 |
++--------+------+----------+
+8 rows in set (0.01 sec)
+
+******************************************************
+c) DML COMMAND- DELETE
+___________________________
+
+tables
+.......
+mysql> select * from customer;
++------+-------+-----------------+-----------+----------+
+| c_id | name  | address         | city      | ph_no    |
++------+-------+-----------------+-----------+----------+
+| 2345 | SAM   | samshouse       | manglore  | 45678974 |
+| 2346 | RAM   | ramanilaya      | madhurai  | 78662035 |
+| 2347 | BEN   | benmansion      | chennai   | 45678978 |
+| 2348 | VARUN | varunahouse     | selam     |     NULL |
+| 2349 | ARJUN | pandavilla      | kozhikode |     NULL |
+| 2350 | KARUN | karunanilayam   | alappuzha |     NULL |
+| 2351 | RAVI  | thodakkattukara | kochi     |     NULL |
+| 5698 | DAVID | david villa 123 | sansford  | 36547892 |
++------+-------+-----------------+-----------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    100 | 1210 |        2 |
+|    100 | 1211 |        4 |
+|    100 | 1239 |        1 |
+|    100 | 1237 |        3 |
+|    108 | 1236 |        2 |
+|    105 | 1214 |        1 |
+|    107 | 1213 |        1 |
+|    104 | 1238 |        3 |
++--------+------+----------+
+8 rows in set (0.01 sec)
+
+mysql> select * from product;
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   137 |
+| 1211 | JOLO         |   147 |
+| 1212 | JAYA RICE    |    59 |
+| 1213 | COLGATE      |    69 |
+| 1214 | HARPIC       |    83 |
+| 1234 | NIRMA        |    49 |
+| 1235 | SANDAL       |    59 |
+| 1236 | DOVE         |    88 |
+| 1237 | CHOCHO       |    96 |
+| 1238 | NIRAPARA     |    98 |
+| 1239 | SUNFLOWEROIL |   118 |
++------+--------------+-------+
+11 rows in set (0.00 sec)
+
+..................................................
+
+  1. Delete the record of customer id ‘10001’. 
+
+i/p
+-----
+mysql> delete from customer where c_id=2349;
+
+o/p
+-----
+mysql> delete from customer where c_id=2349;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from customer;
++------+-------+-----------------+-----------+----------+
+| c_id | name  | address         | city      | ph_no    |
++------+-------+-----------------+-----------+----------+
+| 2345 | SAM   | samshouse       | manglore  | 45678974 |
+| 2346 | RAM   | ramanilaya      | madhurai  | 78662035 |
+| 2347 | BEN   | benmansion      | chennai   | 45678978 |
+| 2348 | VARUN | varunahouse     | selam     |     NULL |
+| 2350 | KARUN | karunanilayam   | alappuzha |     NULL |
+| 2351 | RAVI  | thodakkattukara | kochi     |     NULL |
+| 5698 | DAVID | david villa 123 | sansford  | 36547892 |
++------+-------+-----------------+-----------+----------+
+7 rows in set (0.00 sec)
+_______________________________________________________
+
+  2. Delete all purchase details of items its quantity less than 2. 
+
+i/p
+-----
+mysql> delete from Invoice_item where quantity<2;
+
+o/p
+-----
+Query OK, 3 rows affected (0.04 sec)
+
+mysql> select * from Invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    100 | 1210 |        2 |
+|    100 | 1211 |        4 |
+|    100 | 1237 |        3 |
+|    108 | 1236 |        2 |
+|    104 | 1238 |        3 |
++--------+------+----------+
+5 rows in set (0.00 sec)
+_________________________________________________________________
+3. Delete the purchase details of product ‘pen’ in the in_id ‘101’. 
+
+i/p
+-----
+mysql> delete from Invoice_item where pid=1236 and Inv_id=108;
+
+o/p
+-----
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from Invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    100 | 1210 |        2 |
+|    100 | 1211 |        4 |
+|    100 | 1237 |        3 |
+|    104 | 1238 |        3 |
++--------+------+----------+
+4 rows in set (0.00 sec)
+---------------------------------------------------------------------
+  5. Delete all records from STUDENT table. 
+
+mysql> select * from student;
++---------+----------+------+--------+
+| roll_no | name     | age  | gender |
++---------+----------+------+--------+
+|      12 | ROHAN S  |   16 | MALE   |
+|      13 | SOHAN S  |   17 | MALE   |
+|      15 | RISHAN S |   15 | MALE   |
++---------+----------+------+--------+
+3 rows in set (0.00 sec)
+
+i/p
+-----
+mysql> delete from student;
+
+o/p
+-----
+mysql> delete from student;
+Query OK, 3 rows affected (0.07 sec)
+
+mysql> select * from student;
+Empty set (0.00 sec)
+_______________________________________________________________
+
+4. Delete details of employees who does not have phone number. 
+
+i/p
+-----
+mysql> delete from customer where ph_no is null;
+
+o/p
+-----
+Query OK, 3 rows affected (0.06 sec)
+
+mysql> select * from customer;
++------+-------+-----------------+----------+----------+
+| c_id | name  | address         | city     | ph_no    |
++------+-------+-----------------+----------+----------+
+| 2345 | SAM   | samshouse       | manglore | 45678974 |
+| 2346 | RAM   | ramanilaya      | madhurai | 78662035 |
+| 2347 | BEN   | benmansion      | chennai  | 45678978 |
+| 5698 | DAVID | david villa 123 | sansford | 36547892 |
++------+-------+-----------------+----------+----------+
+4 rows in set (0.00 sec)
+
+-----------------------------------------------------------
+ 6. Delete Invoice details of a particular customer.
+
+
+mysql> SELECT * FROM Invoice_master;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    100 |    2346 | 2023-03-11 |
+|    101 |    2347 | 2023-03-12 |
+|    102 |    2346 | 2023-02-13 |
+|    104 |    2346 | 2023-01-20 |
+|    105 |    2351 | 2023-03-25 |
+|    109 |    5698 | 2023-01-28 |
++--------+---------+------------+
+10 rows in set (0.00 sec)
+
+i/p
+-----
+mysql> delete from Invoice_master where cust_id=105;
+
+o/p
+-----
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from Invoice_master;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    100 |    2346 | 2023-03-11 |
+|    101 |    2347 | 2023-03-12 |
+|    102 |    2346 | 2023-02-13 |
+|    104 |    2346 | 2023-01-20 |
+|    109 |    5698 | 2023-01-28 |
++--------+---------+------------+
+5 rows in set (0.00 sec)
+
+compleated
+
+
+
