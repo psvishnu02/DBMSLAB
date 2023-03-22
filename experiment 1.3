@@ -156,7 +156,7 @@ mysql> create user 'psvishnu' @'localhost' identified by 'mypass02';
 
 mysql> grant insert,select on customer to 'vishnups' @'localhost';
 
-mysql> grant update,delete on IVOICE.* to 'psvishnu' @'localhost';
+mysql> grant update,delete on INVOICE.* to 'psvishnu' @'localhost';
 
 o/p
 ----
@@ -167,7 +167,7 @@ Query OK, 0 rows affected (0.00 sec)
 
 i/p
 ____
-mysql> revoke delete on IVOICE.* from 'psvishnu' @'localhost';
+mysql> revoke delete on INVOICE.* from 'psvishnu' @'localhost';
 
 o/p
 ----
