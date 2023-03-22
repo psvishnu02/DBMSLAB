@@ -1,0 +1,177 @@
+                  (1.3) TCL & DCL Commands
+                 ---------------------------
+
+a) TCL COMMANDS
+_________________
+
+mysql> select * from employee;
++-------+-------+-----------+------+-----------+
+| SSN   | name  | city      | dob  | adhar_no  |
++-------+-------+-----------+------+-----------+
+| 44444 | JOHN  | NEWYORK   | 2000 | 659875464 |
+| 54694 | Jorge | mangalore | 2001 | 265987554 |
+| 54694 | varky | Bangalore | 2002 | 205987554 |
+|  4364 | JOHN  | NEWYORK   | 2000 | 659875464 |
+|  4984 | JOHN  | NEWYORK   | 2000 | 659875464 |
++-------+-------+-----------+------+-----------+
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1.    Commit
+
+i/p
+---
+mysql> SET AUTOCOMMIT=OFF;
+mysql> insert into employee values(1234,'ALBERT','CHENNAI',1994,456879123);
+mysql> COMMIT;
+
+
+o/p
+----
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM employee;
++-------+--------+-----------+------+-----------+
+| SSN   | name   | city      | dob  | adhar_no  |
++-------+--------+-----------+------+-----------+
+| 44444 | JOHN   | NEWYORK   | 2000 | 659875464 |
+| 54694 | Jorge  | mangalore | 2001 | 265987554 |
+| 54694 | varky  | Bangalore | 2002 | 205987554 |
+|  4364 | JOHN   | NEWYORK   | 2000 | 659875464 |
+|  4984 | JOHN   | NEWYORK   | 2000 | 659875464 |
+|  1234 | ALBERT | CHENNAI   | 1994 | 456879123 |
++-------+--------+-----------+------+-----------+
+6 rows in set (0.00 sec)
+--------------------------------------------------------
+2.    Rollback
+
+i/p
+---
+mysql> insert into employee values(6594,'VARUN','TRIVANDRUM',1995,450175693);
+
+mysql> ROLLBACK;
+
+
+
+o/p
+----
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SELECT * FROM employee;
++-------+--------+------------+------+-----------+
+| SSN   | name   | city       | dob  | adhar_no  |
++-------+--------+------------+------+-----------+
+| 44444 | JOHN   | NEWYORK    | 2000 | 659875464 |
+| 54694 | Jorge  | mangalore  | 2001 | 265987554 |
+| 54694 | varky  | Bangalore  | 2002 | 205987554 |
+|  4364 | JOHN   | NEWYORK    | 2000 | 659875464 |
+|  4984 | JOHN   | NEWYORK    | 2000 | 659875464 |
+|  1234 | ALBERT | CHENNAI    | 1994 | 456879123 |
+|  6584 | ARJUN  | KOLLAM     | 1998 | 456875693 |
+|  6594 | VARUN  | TRIVANDRUM | 1995 | 450175693 |
++-------+--------+------------+------+-----------+
+8 rows in set (0.00 sec)
+
+AFTER ROLLBACK
++++++++++++++
+mysql> SELECT * FROM employee;
++-------+--------+-----------+------+-----------+
+| SSN   | name   | city      | dob  | adhar_no  |
++-------+--------+-----------+------+-----------+
+| 44444 | JOHN   | NEWYORK   | 2000 | 659875464 |
+| 54694 | Jorge  | mangalore | 2001 | 265987554 |
+| 54694 | varky  | Bangalore | 2002 | 205987554 |
+|  4364 | JOHN   | NEWYORK   | 2000 | 659875464 |
+|  4984 | JOHN   | NEWYORK   | 2000 | 659875464 |
+|  1234 | ALBERT | CHENNAI   | 1994 | 456879123 |
+|  6584 | ARJUN  | KOLLAM    | 1998 | 456875693 |
++-------+--------+-----------+------+-----------+
+7 rows in set (0.01 sec)
+-----------------------------------------------------------
+  3.    Savepoint
+
+i/p
+---
+mysql> insert into employee values(6314,'KARTHIK','MALAPPURAM',1999,607175693);
+mysql> SAVEPOINT S1;
+
+mysql> insert into employee values(6404,'SURYA','CALICUT',1990,604305693);
+mysql> SAVEPOINT S2;
+
+mysql> ROLLBACK TO S1;
+
+o/p
+----
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM employee;
++-------+---------+------------+------+-----------+
+| SSN   | name    | city       | dob  | adhar_no  |
++-------+---------+------------+------+-----------+
+| 44444 | JOHN    | NEWYORK    | 2000 | 659875464 |
+| 54694 | Jorge   | mangalore  | 2001 | 265987554 |
+| 54694 | varky   | Bangalore  | 2002 | 205987554 |
+|  4364 | JOHN    | NEWYORK    | 2000 | 659875464 |
+|  4984 | JOHN    | NEWYORK    | 2000 | 659875464 |
+|  1234 | ALBERT  | CHENNAI    | 1994 | 456879123 |
+|  6584 | ARJUN   | KOLLAM     | 1998 | 456875693 |
+|  6314 | KARTHIK | MALAPPURAM | 1999 | 607175693 |
+|  6404 | SURYA   | CALICUT    | 1990 | 604305693 |
++-------+---------+------------+------+-----------+
+9 rows in set (0.00 sec)
+
+AFTER ROLLBACK
+++++++++++++++
+mysql> SELECT * FROM employee;
++-------+---------+------------+------+-----------+
+| SSN   | name    | city       | dob  | adhar_no  |
++-------+---------+------------+------+-----------+
+| 44444 | JOHN    | NEWYORK    | 2000 | 659875464 |
+| 54694 | Jorge   | mangalore  | 2001 | 265987554 |
+| 54694 | varky   | Bangalore  | 2002 | 205987554 |
+|  4364 | JOHN    | NEWYORK    | 2000 | 659875464 |
+|  4984 | JOHN    | NEWYORK    | 2000 | 659875464 |
+|  1234 | ALBERT  | CHENNAI    | 1994 | 456879123 |
+|  6584 | ARJUN   | KOLLAM     | 1998 | 456875693 |
+|  6314 | KARTHIK | MALAPPURAM | 1999 | 607175693 |
++-------+---------+------------+------+-----------+
+8 rows in set (0.00 sec)
+
+____________________________________________________________
+
+
+b) DCL COMMAND
+_____________________
+ 
+ Create two users user1, user2
+
+1.      GRANT
+                    ->Give insert and select privilege to user 1 on customer table in the invoice database.
+                    ->Give update and delete privilege to user 2 on all tables in the invoice database.
+
+i/p
+____
+
+mysql> create user 'vishnups' @'localhost' identified by 'mypass01';
+
+mysql> create user 'psvishnu' @'localhost' identified by 'mypass02';
+
+mysql> grant insert,select on customer to 'vishnups' @'localhost';
+
+mysql> grant update,delete on IVOICE.* to 'psvishnu' @'localhost';
+
+o/p
+----
+Query OK, 0 rows affected (0.00 sec)
+--------------------------------------------------
+2.      REVOKE
+                   ->Remove delete privilege of user 2.
+
+i/p
+____
+mysql> revoke delete on IVOICE.* from 'psvishnu' @'localhost';
+
+o/p
+----
+Query OK, 0 rows affected (0.00 sec)
+
+
+
