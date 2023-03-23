@@ -154,13 +154,59 @@ mysql> create user 'vishnups' @'localhost' identified by 'mypass01';
 
 mysql> create user 'psvishnu' @'localhost' identified by 'mypass02';
 
+mysql> select user from mysql.user;
+
 mysql> grant insert,select on customer to 'vishnups' @'localhost';
+mysql> show grants for 'vishnups' @'localhost';
 
 mysql> grant update,delete on INVOICE.* to 'psvishnu' @'localhost';
+mysql> show grants for 'psvishnu' @'localhost';
 
 o/p
 ----
++------------------+
+| user             |
++------------------+
+| abc              |
+| debian-sys-maint |
+| mysql.session    |
+| mysql.sys        |
+| phpmyadmin       |
+| ps               |
+| psvishnu         |
+| root             |
+| shamna           |
+| use              |
+| user             |
+| user1            |
+| user2            |
+| user3            |
+| userr1           |
+| userr2           |
+| vishnu           |
+| vishnups         |
++------------------+
+18 rows in set (0.00 sec)
+
 Query OK, 0 rows affected (0.00 sec)
++------------------------------------------------------------------------+
+| Grants for vishnups@localhost                                          |
++------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'vishnups'@'localhost'                           |
+| GRANT SELECT, INSERT ON `INVOICE`.`customer` TO 'vishnups'@'localhost' |
++------------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
++---------------------------------------------------------------+
+| Grants for psvishnu@localhost                                 |
++---------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'psvishnu'@'localhost'                  |
+| GRANT UPDATE ON `IVOICE`.* TO 'psvishnu'@'localhost'          |
+| GRANT UPDATE, DELETE ON `INVOICE`.* TO 'psvishnu'@'localhost' |
++---------------------------------------------------------------+
+3 rows in set (0.00 sec)
+
+
 --------------------------------------------------
 2.      REVOKE
                    ->Remove delete privilege of user 2.
@@ -168,10 +214,19 @@ Query OK, 0 rows affected (0.00 sec)
 i/p
 ____
 mysql> revoke delete on INVOICE.* from 'psvishnu' @'localhost';
+mysql> show grants for 'psvishnu' @'localhost';
 
 o/p
 ----
 Query OK, 0 rows affected (0.00 sec)
 
++-------------------------------------------------------+
+| Grants for psvishnu@localhost                         |
++-------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'psvishnu'@'localhost'          |
+| GRANT UPDATE ON `IVOICE`.* TO 'psvishnu'@'localhost'  |
+| GRANT UPDATE ON `INVOICE`.* TO 'psvishnu'@'localhost' |
++-------------------------------------------------------+
+3 rows in set (0.01 sec)
 
-.//SHOW GRANTS
+.
