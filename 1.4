@@ -1,0 +1,296 @@
+          Experiment No: 1.4 ACCESSING DATABASE:  (SELECT, Filtering using WHERE, HAVING,  ORDER BY Clauses)
+    __________________________________________________________________________________________________________
+
+1.    List all customer details.
+
+i/p
+----
+mysql> SELECT * FROM customer;
+
+o/p
+----
++------+-------+-----------------+----------+----------+
+| c_id | name  | address         | city     | ph_no    |
++------+-------+-----------------+----------+----------+
+| 2345 | SAM   | samshouse       | manglore | 45678974 |
+| 2346 | RAM   | ramanilaya      | madhurai | 78662035 |
+| 2347 | BEN   | benmansion      | chennai  | 45678978 |
+| 5698 | DAVID | david villa 123 | sansford | 36547892 |
++------+-------+-----------------+----------+----------+
+4 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------
+2.    List pname, price of all products.
+
+i/p
+----
+mysql> select pname,price from product;
+
+o/p
+----
++--------------+-------+
+| pname        | price |
++--------------+-------+
+| SUNLIGHT     |   143 |
+| JOLO         |   153 |
+| JAYA RICE    |    61 |
+| COLGATE      |    71 |
+| HARPIC       |    87 |
+| NIRMA        |    51 |
+| SANDAL       |    61 |
+| DOVE         |    92 |
+| CHOCHO       |   100 |
+| NIRAPARA     |   102 |
+| SUNFLOWEROIL |   122 |
++--------------+-------+
+11 rows in set (0.00 sec)
+______________________________________________________________
+
+3.    List all invoice items, avoid duplicates.
+
+i/p
+----
+mysql> select distinct inv_id from Invoice_item;
+
+o/p
+----
++--------+
+| inv_id |
++--------+
+|    100 |
+|    104 |
++--------+
+2 rows in set (0.03 sec)
+
+-------------------------------------------------------------------
+4.    List product price between 50rs and 150rs
+
+i/p
+----
+mysql> SELECT * FROM product WHERE price between 70 and 150;
+
+o/p
+----
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   143 |
+| 1213 | COLGATE      |    71 |
+| 1214 | HARPIC       |    87 |
+| 1236 | DOVE         |    92 |
+| 1237 | CHOCHO       |   100 |
+| 1238 | NIRAPARA     |   102 |
+| 1239 | SUNFLOWEROIL |   122 |
++------+--------------+-------+
+7 rows in set (0.00 sec)
+------------------------------------------------------------------
+5.    List the customer details who lives in ‘ekm’,’tvm’.
+
+i/p
+----
+mysql> SELECT * FROM customer WHERE city IN('madhurai','chennai');
+
+o/p
+-----
++------+------+------------+----------+----------+
+| c_id | name | address    | city     | ph_no    |
++------+------+------------+----------+----------+
+| 2346 | RAM  | ramanilaya | madhurai | 78662035 |
+| 2347 | BEN  | benmansion | chennai  | 45678978 |
++------+------+------------+----------+----------+
+2 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+6.    List the invoice details from 28 January 2023 to 11th march 2023
+
+i/p
+----
+mysql> select * from Invoice_master where inv_date between '2023-01-28' and  '2023-03-11';
+
+o/p
+-----
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    100 |    2346 | 2023-03-11 |
+|    102 |    2346 | 2023-02-13 |
+|    109 |    5698 | 2023-01-28 |
++--------+---------+------------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+7.    List the customer details who not live in mangalore.
+
+i/p
+------
+mysql> SELECT * FROM customer WHERE city!='mangalore';
+
+o/p
+-----
++------+-------+-----------------+----------+----------+
+| c_id | name  | address         | city     | ph_no    |
++------+-------+-----------------+----------+----------+
+| 2345 | SAM   | samshouse       | manglore | 45678974 |
+| 2346 | RAM   | ramanilaya      | madhurai | 78662035 |
+| 2347 | BEN   | benmansion      | chennai  | 45678978 |
+| 5698 | DAVID | david villa 123 | sansford | 36547892 |
++------+-------+-----------------+----------+----------+
+4 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+8.    List the customers who have no phone number.
+
+i/p
+----
+mysql> select * from customer where ph_no is null;
+
+o/p
+-----
++------+---------+---------------+-------------+-------+
+| c_id | name    | address       | city        | ph_no |
++------+---------+---------------+-------------+-------+
+| 4653 | HENRY   | henryheritage | melborn     |  NULL |
+| 4657 | SOUTHEE | southvilla    | old traford |  NULL |
++------+---------+---------------+-------------+-------+
+2 rows in set (0.00 sec)
+----------------------------------------------------------------------------
+9.    Display customer names in descending order.
+
+i/p
+-----
+mysql> select * from customer order by name desc;
+
+o/p
+------
++------+---------+-----------------+-------------+----------+
+| c_id | name    | address         | city        | ph_no    |
++------+---------+-----------------+-------------+----------+
+| 4657 | SOUTHEE | southvilla      | old traford |     NULL |
+| 2345 | SAM     | samshouse       | manglore    | 45678974 |
+| 2346 | RAM     | ramanilaya      | madhurai    | 78662035 |
+| 4653 | HENRY   | henryheritage   | melborn     |     NULL |
+| 5698 | DAVID   | david villa 123 | sansford    | 36547892 |
+| 2347 | BEN     | benmansion      | chennai     | 45678978 |
++------+---------+-----------------+-------------+----------+
+6 rows in set (0.00 sec)
+---------------------------------------------------------------------------------
+10. Display the customer details sorted in ascending by city and descending by names.
+
+i/p
+-----
+mysql> select * from customer order by city asc,name desc;
+
+o/p
+----
++------+---------+-----------------+-------------+----------+
+| c_id | name    | address         | city        | ph_no    |
++------+---------+-----------------+-------------+----------+
+| 2347 | BEN     | benmansion      | chennai     | 45678978 |
+| 2346 | RAM     | ramanilaya      | madhurai    | 78662035 |
+| 2345 | SAM     | samshouse       | manglore    | 45678974 |
+| 4653 | HENRY   | henryheritage   | melborn     |     NULL |
+| 4657 | SOUTHEE | southvilla      | old traford |     NULL |
+| 5698 | DAVID   | david villa 123 | sansford    | 36547892 |
++------+---------+-----------------+-------------+----------+
+6 rows in set (0.00 sec)
+
+--------------------------------------------------------------------------------------------
+11. Find the customer names start with ‘A’.
+
+i/p
+-----
+mysql> select name from customer where name like 'a%';
+
+o/p
+------
++--------+
+| name   |
++--------+
+| ALAN   |
+| ALEENA |
++--------+
+2 rows in set (0.00 sec)
+---------------------------------------------------------------
+12. Find the customer names who have ‘e’ or ‘a’ in them.
+
+i/p
+-----
+mysql> select name from customer where name like '%a%' or name like '%e%';
+
+o/p
+-----
++---------+
+| name    |
++---------+
+| SAM     |
+| RAM     |
+| BEN     |
+| ALAN    |
+| HENRY   |
+| ALEENA  |
+| SOUTHEE |
+| DAVID   |
++---------+
+8 rows in set (0.00 sec)
+-------------------------------------------------------------------
+13. Find the customer names who have at least 3 characters.
+
+i/p
+-----
+mysql> select name from customer where name like '__%';
+
+o/p
+-----
++---------+
+| name    |
++---------+
+| SAM     |
+| RAM     |
+| BEN     |
+| ALAN    |
+| HENRY   |
+| ALEENA  |
+| SOUTHEE |
+| DAVID   |
++---------+
+8 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+14. List the names of customers their names have ‘r’ in second position.
+
+i/p
+----
+mysql> select name from customer where name like '_r%';
+
+o/p
+----
++-------+
+| name  |
++-------+
+| ARJUN |
++-------+
+1 row in set (0.00 sec)
+------------------------------------------------------------------
+15. Find the customer names start with ‘a’ and are at least 3 characters in length.
+
+i/p
+----
+mysql> select name from customer where name like 'a_%';
+
+o/p
+----
++--------+
+| name   |
++--------+
+| ALAN   |
+| ALEENA |
+| ARJUN  |
++--------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
