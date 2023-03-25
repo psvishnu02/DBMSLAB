@@ -123,19 +123,23 @@ o/p
 
 i/p
 ------
-mysql> SELECT * FROM customer WHERE city!='mangalore';
+mysql> SELECT * FROM customer WHERE city!='manglore';
 
 o/p
 -----
-+------+-------+-----------------+----------+----------+
-| c_id | name  | address         | city     | ph_no    |
-+------+-------+-----------------+----------+----------+
-| 2345 | SAM   | samshouse       | manglore | 45678974 |
-| 2346 | RAM   | ramanilaya      | madhurai | 78662035 |
-| 2347 | BEN   | benmansion      | chennai  | 45678978 |
-| 5698 | DAVID | david villa 123 | sansford | 36547892 |
-+------+-------+-----------------+----------+----------+
-4 rows in set (0.00 sec)
++------+---------+-----------------+-------------+-----------+
+| c_id | name    | address         | city        | ph_no     |
++------+---------+-----------------+-------------+-----------+
+| 2346 | RAM     | ramanilaya      | madhurai    |  78662035 |
+| 2347 | BEN     | benmansion      | chennai     |  45678978 |
+| 4650 | ALAN    | alenheritage    | australia   | 946557755 |
+| 4653 | HENRY   | henryheritage   | melborn     |      NULL |
+| 4655 | ALEENA  | alexheritage    | cambridge   | 946557755 |
+| 4657 | SOUTHEE | southvilla      | old traford |      NULL |
+| 4659 | ARJUN   | arjunsvilla     | trissur     | 946007755 |
+| 5698 | DAVID   | david villa 123 | sansford    |  36547892 |
++------+---------+-----------------+-------------+-----------+
+8 rows in set (0.00 sec)
 
 -------------------------------------------------------------------
 8.    List the customers who have no phone number.
