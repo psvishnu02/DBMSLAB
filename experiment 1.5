@@ -1,0 +1,130 @@
+                             EXPERIMENT NO: 1.5 - ACCESSING DATABASE:  (SUBQUERY)
+                            ___________________________________________________________
+
+1.5  ACCESSING DATABASE: (SUBQUERY)
+------------------------------------
+1.    List the customer names of invoice date 3rd February 2023.
+
+i/p
+----
+mysql> select * from customer where c_id in (select cust_id  from Invoice_master where Inv_date='2023-02-03');
+
+o/p
+-----
++------+---------+-----------------+-------------+-----------+
+| c_id | name    | address         | city        | ph_no     |
++------+---------+-----------------+-------------+-----------+
+| 4650 | ALAN    | alenheritage    | australia   | 946557755 |
+| 4657 | SOUTHEE | southvilla      | old traford |      NULL |
+| 5698 | DAVID   | david villa 123 | sansford    |  36547892 |
++------+---------+-----------------+-------------+-----------+
+3 rows in set (0.02 sec)
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+2.    List the product name and price of each invoice item.
+ 
+i/p
+----
+mysql> select pname,price from product where p_id in(select pid from Invoice_item);
+
+o/p
+----
++----------+-------+
+| pname    | price |
++----------+-------+
+| SUNLIGHT |   143 |
+| JOLO     |   153 |
+| CHOCHO   |   100 |
+| NIRAPARA |   102 |
++----------+-------+
+4 rows in set (0.00 sec)
+
+--------------------------------------------------------------------------------------------------------------------------------------
+3.    List the product names, only include their purchased quantity more than 3.
+
+i/p
+-----
+mysql> select pname from product where p_id in(select pid from Invoice_item where quantity>3);
+
+o/p
+-----
++--------+
+| pname  |
++--------+
+| JOLO   |
+| SANDAL |
+| NIRMA  |
++--------+
+3 rows in set (0.00 sec)
+
+--------------------------------------------------------------------
+4.    Find the product that has no sale.
+
+i/p
+---
+mysql> select pname from product where p_id not in(select pid from Invoice_item);
+
+o/p
+-----
++--------------+
+| pname        |
++--------------+
+| JAYA RICE    |
+| COLGATE      |
+| HARPIC       |
+| DOVE         |
+| SUNFLOWEROIL |
++--------------+
+5 rows in set (0.00 sec)
+--------------------------------------------------------------------
+5.    List the customer names who purchased the items ‘pen’ and ‘pencil’.
+
+i/p
+-----
+mysql> select name from customer where c_id in(select cust_id from Invoice_master where inv_id in(select inv_id from Invoice_item where pid in(select p_id from product where pname="SUNLIGHT" or pname="NIRMA")));
+
+o/p
+-----
++---------+
+| name    |
++---------+
+| RAM     |
+| SOUTHEE |
++---------+
+2 rows in set (0.00 sec)
+
+-----------------------------------------------------------------
+6.    Display the purchased product details of the customer ’RAM’.
+
+i/p
+----
+mysql> select pname from product where p_id in(select pid from Invoice_item where inv_id in(select inv_id from Invoice_master where cust_id in(select c_id from customer where name="RAM")));
+
+O/P
+-----
++----------+
+| pname    |
++----------+
+| SUNLIGHT |
+| JOLO     |
+| CHOCHO   |
+| NIRAPARA |
++----------+
+4 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------
+7.    List the names of all customers who have purchased at least 2 products, make sure that no duplicate names in the result.
+
+i/p
+----
+mysql> select distinct name from customer where c_id in(select cust_id from Invoice_master where inv_id in(select inv_id from Invoice_item group by inv_id having count(*)>2));
+
+o/p
+----
++------+
+| name |
++------+
+| RAM  |
++------+
+1 row in set (0.00 sec)
+
