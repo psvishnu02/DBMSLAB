@@ -1,0 +1,49 @@
+                                EXPERIMENT NO: 1.6 ACCESSING DATABASES: (VIEWS)
+                              ---------------------------------------------------
+
+1. Create a view for customers who have purchased products.
+
+i/p
+----
+mysql> create view purchase as select name from customer where c_id in(select cust_id from Invoice_master);
+mysql> select * from purchase;
+
+o/p
+-----
+Query OK, 0 rows affected (0.03 sec)
+
++---------+
+| name    |
++---------+
+| RAM     |
+| BEN     |
+| ALAN    |
+| SOUTHEE |
+| DAVID   |
++---------+
+5 rows in set (0.03 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------
+2. Create a view for invoice products[cust_name, , inv_id, product_id, quantity]
+
+i/p
+-----
+mysql> create view inv_prod as select customer.name,Invoice_master.inv_id,product.p_id,Invoice_item.quantity from customer inner join Invoice_master on customer.c_id=Invoice_master.cust_id inner join Invoice_item on Invoice_master.inv_id=Invoice_item.inv_id inner join product on product.p_id=Invoice_item.pid;
+
+mysql> SELECT * FROM inv_prod;
+
+o/p
+---
+Query OK, 0 rows affected (0.02 sec)
+
++---------+--------+------+----------+
+| name    | inv_id | p_id | quantity |
++---------+--------+------+----------+
+| RAM     |    100 | 1210 |        2 |
+| RAM     |    100 | 1211 |        4 |
+| RAM     |    100 | 1237 |        3 |
+| RAM     |    104 | 1238 |        3 |
+| DAVID   |    106 | 1235 |        6 |
+| SOUTHEE |    105 | 1234 |        5 |
++---------+--------+------+----------+
+6 rows in set (0.00 sec)
+
