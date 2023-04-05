@@ -1,11 +1,11 @@
                       EXPERIMENT NO: 1.7 OPTIMIZING DATABASE:  (GROUP BY, AGGREGATE FUNCTIONS)
                  ================================================================================
 
-1.    List product name, price except soap on price order.
+1.    List product name, price except DOVE on price order.
 
 i/p
 ----
-mysql> select pname,price from product where pname!="DOVE" order by price asc; //WRONG QUERY
+mysql> select pname,price from product where pname!="DOVE" order by price asc;
 
 
 o/p
@@ -67,7 +67,7 @@ o/p
 9 rows in set (0.00 sec)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
-4.    Find number of customers in each city, only include city with more than 3 customers.
+4.    Find number of customers in each city, only include city with more than 2 customers.
 
 i/p
 ----
