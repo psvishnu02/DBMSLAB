@@ -1,5 +1,71 @@
                                 EXPERIMENT NO: 1.8 OPTIMIZING DATABASE: (JOINS)
                               ======================================================
+                              
+mysql> SELECT * FROM product;
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   143 |
+| 1211 | JOLO         |   153 |
+| 1212 | JAYA RICE    |    61 |
+| 1213 | COLGATE      |    71 |
+| 1214 | HARPIC       |    87 |
+| 1234 | NIRMA        |    51 |
+| 1235 | SANDAL       |    61 |
+| 1236 | DOVE         |    92 |
+| 1237 | CHOCHO       |   100 |
+| 1238 | NIRAPARA     |   102 |
+| 1239 | SUNFLOWEROIL |   122 |
++------+--------------+-------+
+11 rows in set (0.00 sec)
+
+mysql> select * from customer;
++------+---------+------------------+-------------+-----------+
+| c_id | name    | address          | city        | ph_no     |
++------+---------+------------------+-------------+-----------+
+| 2345 | SAM     | samshouse        | manglore    |  45678974 |
+| 2346 | RAM     | ramanilaya       | madhurai    |  78662035 |
+| 2347 | BEN     | benmansion       | chennai     |  45678978 |
+| 4650 | ALAN    | alenheritage     | australia   | 946557755 |
+| 4653 | HENRY   | henryheritage    | melborn     |      NULL |
+| 4655 | ALEENA  | alexheritage     | cambridge   | 946557755 |
+| 4657 | SOUTHEE | southvilla       | old traford |      NULL |
+| 4659 | ARJUN   | arjunsvilla      | trissur     | 946007755 |
+| 5698 | DAVID   | david villa 123  | sansford    |  36547892 |
+| 8845 | ADAM    | adams heaven     | trissur     | 624564662 |
+| 8855 | HABEEB  | al-habeebi villa | trissur     | 454564662 |
++------+---------+------------------+-------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> select * from Invoice_master;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    100 |    2346 | 2023-03-11 |
+|    101 |    2347 | 2023-03-12 |
+|    102 |    2346 | 2023-02-13 |
+|    103 |    4650 | 2023-02-03 |
+|    104 |    2346 | 2023-01-20 |
+|    105 |    4657 | 2023-02-03 |
+|    106 |    5698 | 2023-02-03 |
+|    109 |    5698 | 2023-01-28 |
++--------+---------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    100 | 1210 |        2 |
+|    100 | 1211 |        4 |
+|    100 | 1237 |        3 |
+|    104 | 1238 |        3 |
+|    106 | 1235 |        6 |
+|    105 | 1234 |        5 |
++--------+------+----------+
+6 rows in set (0.00 sec)
+
+
 
 1.     List the product name and quantity of invoice items.
 
