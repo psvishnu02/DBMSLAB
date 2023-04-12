@@ -1,0 +1,89 @@
+                                EXPERIMENT NO: 1.8 OPTIMIZING DATABASE: (JOINS)
+                              ======================================================
+
+1.     List the product name and quantity of invoice items.
+
+i/p
+----
+mysql> select product.pname,Invoice_item.quantity from product inner join Invoice_item on product.p_id=Invoice_item.pid;
+
+o/p
+------
++----------+----------+
+| pname    | quantity |
++----------+----------+
+| SUNLIGHT |        2 |
+| JOLO     |        4 |
+| CHOCHO   |        3 |
+| NIRAPARA |        3 |
+| SANDAL   |        6 |
+| NIRMA    |        5 |
++----------+----------+
+6 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+2.    Display invoice details of the transaction dated ’2023-02-03’.
+
+i/p
+----
+mysql> select Invoice_master.inv_date,Invoice_master.cust_id,customer.name,Invoice_item.pid,product.pname,Invoice_item.quantity from Invoice_master inner join Invoice_item on Invoice_master.inv_id=Invoice_item.inv_id inner join product on product.p_id=Invoice_item.pid inner join customer on customer.c_id=Invoice_master.cust_id where inv_date='2023-02-03 ';
+
+o/p
+-----
++------------+---------+---------+------+--------+----------+
+| inv_date   | cust_id | name    | pid  | pname  | quantity |
++------------+---------+---------+------+--------+----------+
+| 2023-02-03 |    4657 | SOUTHEE | 1234 | NIRMA  |        5 |
+| 2023-02-03 |    5698 | DAVID   | 1235 | SANDAL |        6 |
++------------+---------+---------+------+--------+----------+
+2 rows in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------
+3.    Display the customer name, product name, invoice date of purchased item ‘SANDAL’.
+
+i/p
+----
+mysql> select customer.name,product.pname,Invoice_master.inv_date from customer inner join Invoice_master on customer.c_id=Invoice_master.cust_id inner join Invoice_item on Invoice_master.inv_id=Invoice_item.inv_id inner join product on Invoice_item.pid=product.p_id where pname="SANDAL";
+
+o/p
+-----
++-------+--------+------------+
+| name  | pname  | inv_date   |
++-------+--------+------------+
+| DAVID | SANDAL | 2023-02-03 |
++-------+--------+------------+
+1 row in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------
+4.    Display all customer details and invoice details must include customer has not purchased items.
+
+i/p
+------
+mysql> select name,Invoice_master.inv_id,Invoice_master.inv_date,product.pname from customer left join Invoice_master on customer.c_id=Invoice_master.cust_id left join Invoice_item on Invoice_master.inv_id=Invoice_item.inv_id left join product on product.p_id=Invoice_item.pid;
+
+o/p
+----
++---------+--------+------------+----------+
+| name    | inv_id | inv_date   | pname    |
++---------+--------+------------+----------+
+| RAM     |    100 | 2023-03-11 | SUNLIGHT |
+| RAM     |    100 | 2023-03-11 | JOLO     |
+| RAM     |    100 | 2023-03-11 | CHOCHO   |
+| RAM     |    104 | 2023-01-20 | NIRAPARA |
+| DAVID   |    106 | 2023-02-03 | SANDAL   |
+| SOUTHEE |    105 | 2023-02-03 | NIRMA    |
+| BEN     |    101 | 2023-03-12 | NULL     |
+| RAM     |    102 | 2023-02-13 | NULL     |
+| ALAN    |    103 | 2023-02-03 | NULL     |
+| DAVID   |    109 | 2023-01-28 | NULL     |
+| SAM     |   NULL | NULL       | NULL     |
+| HENRY   |   NULL | NULL       | NULL     |
+| ALEENA  |   NULL | NULL       | NULL     |
+| ARJUN   |   NULL | NULL       | NULL     |
+| ADAM    |   NULL | NULL       | NULL     |
+| HABEEB  |   NULL | NULL       | NULL     |
++---------+--------+------------+----------+
+16 rows in set (0.02 sec)
+
+
+
+
