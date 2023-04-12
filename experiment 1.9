@@ -1,0 +1,122 @@
+       EXPERIMENT NO: 1.9	OPTIMIZING DATABASE: (Using Set, arithmetic, logical and special operators)
+      ******************************************************************************************************
+
+mysql> select * from customer;
++------+---------+------------------+-------------+-----------+
+| c_id | name    | address          | city        | ph_no     |
++------+---------+------------------+-------------+-----------+
+| 2345 | SAM     | samshouse        | manglore    |  45678974 |
+| 2346 | RAM     | ramanilaya       | madhurai    |  78662035 |
+| 2347 | BEN     | benmansion       | chennai     |  45678978 |
+| 4650 | ALAN    | alenheritage     | australia   | 946557755 |
+| 4653 | HENRY   | henryheritage    | melborn     |      NULL |
+| 4655 | ALEENA  | alexheritage     | cambridge   | 946557755 |
+| 4657 | SOUTHEE | southvilla       | old traford |      NULL |
+| 4659 | ARJUN   | arjunsvilla      | trissur     | 946007755 |
+| 5698 | DAVID   | david villa 123  | sansford    |  36547892 |
+| 8845 | ADAM    | adams heaven     | trissur     | 624564662 |
+| 8855 | HABEEB  | al-habeebi villa | trissur     | 454564662 |
++------+---------+------------------+-------------+-----------+
+
+
+1.      Display customer_id, city  who lives either in ‘chennai’ or in ‘trissur’
+
+i/p
+----
+mysql> select c_id,city from customer where city="trissur" or city="chennai";
+
+o/p
+----
++------+---------+
+| c_id | city    |
++------+---------+
+| 2347 | chennai |
+| 4659 | trissur |
+| 8845 | trissur |
+| 8855 | trissur |
++------+---------+
+4 rows in set (0.00 sec)
+````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+2.      Display product details with an updated price amount(new price= old price+5rs)
+
+
+mysql> SELECT * FROM product;
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   143 |
+| 1211 | JOLO         |   153 |
+| 1212 | JAYA RICE    |    61 |
+| 1213 | COLGATE      |    71 |
+| 1214 | HARPIC       |    87 |
+| 1234 | NIRMA        |    51 |
+| 1235 | SANDAL       |    61 |
+| 1236 | DOVE         |    92 |
+| 1237 | CHOCHO       |   100 |
+| 1238 | NIRAPARA     |   102 |
+| 1239 | SUNFLOWEROIL |   122 |
++------+--------------+-------+
+11 rows in set (0.00 sec)
+
+i/p
+---------
+mysql> update product set price=price+5;
+
+o/p
+-----
+Query OK, 11 rows affected (0.08 sec)
+Rows matched: 11  Changed: 11  Warnings: 0
+
+mysql> select * from product;
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   148 |
+| 1211 | JOLO         |   158 |
+| 1212 | JAYA RICE    |    66 |
+| 1213 | COLGATE      |    76 |
+| 1214 | HARPIC       |    92 |
+| 1234 | NIRMA        |    56 |
+| 1235 | SANDAL       |    66 |
+| 1236 | DOVE         |    97 |
+| 1237 | CHOCHO       |   105 |
+| 1238 | NIRAPARA     |   107 |
+| 1239 | SUNFLOWEROIL |   127 |
++------+--------------+-------+
+11 rows in set (0.01 sec)
+----------------------------------------------------------------------------------------------------------------------------------------
+3.      Display customer details who doesn’t have phone number and lives in ‘melborn’ city (use logical operators)
+
+i/p
+------
+mysql> select * from customer where ph_no is null and city="melborn";
+
+o/p
+----
++------+-------+---------------+---------+-------+
+| c_id | name  | address       | city    | ph_no |
++------+-------+---------------+---------+-------+
+| 4653 | HENRY | henryheritage | melborn |  NULL |
++------+-------+---------------+---------+-------+
+1 row in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------
+4.      List the product names if it finds any records in the invoice items table has quantity =3 (use special operators)
+
+i/p
+-----
+mysql> select pname from product where p_id in(select pid from Invoice_item);
+
+o/p
+-----
++----------+
+| pname    |
++----------+
+| SUNLIGHT |
+| JOLO     |
+| NIRMA    |
+| SANDAL   |
+| CHOCHO   |
+| NIRAPARA |
++----------+
+6 rows in set (0.00 sec)
+
