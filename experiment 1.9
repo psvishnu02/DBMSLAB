@@ -114,23 +114,19 @@ o/p
 1 row in set (0.00 sec)
 ----------------------------------------------------------------------------------------------------------------------------------------
 4.      List the product names if it finds any records in the invoice items table has quantity =3 (use special operators)
-
 i/p
 -----
-mysql> select pname from product where p_id in(select pid from Invoice_item); //WRONG QUERY
+mysql> select pname from product where p_id in(select pid from Invoice_item where quantity=3);
+
 
 o/p
 -----
 +----------+
 | pname    |
 +----------+
-| SUNLIGHT |
-| JOLO     |
-| NIRMA    |
-| SANDAL   |
 | CHOCHO   |
 | NIRAPARA |
 +----------+
-6 rows in set (0.00 sec)
+2 rows in set (0.03 sec)
 
-//RESUBMIT
+
