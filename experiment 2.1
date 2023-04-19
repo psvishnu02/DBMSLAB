@@ -1,0 +1,143 @@
+                           EXPERIMENT NO: 2.1	- PL/SQL PROGRAMS- STORED PROCEDURES 
+                       ========================================================================
+1.      Create a procedure to display all tables in the invoice database.
+
+i/p
+----
+mysql> create procedure tabinv() begin select * from customer; select * from product; select * from Invoice_master; select * from Invoice_item;end//
+
+mysql> call tabinv();
+    -> //
+
+o/p
+------
+Query OK, 0 rows affected (0.00 sec)
+
++------+---------+------------------+-------------+-----------+
+| c_id | name    | address          | city        | ph_no     |
++------+---------+------------------+-------------+-----------+
+| 2345 | SAM     | samshouse        | manglore    |  45678974 |
+| 2346 | RAM     | ramanilaya       | madhurai    |  78662035 |
+| 2347 | BEN     | benmansion       | chennai     |  45678978 |
+| 4650 | ALAN    | alenheritage     | australia   | 946557755 |
+| 4653 | HENRY   | henryheritage    | melborn     |      NULL |
+| 4655 | ALEENA  | alexheritage     | cambridge   | 946557755 |
+| 4657 | SOUTHEE | southvilla       | old traford |      NULL |
+| 4659 | ARJUN   | arjunsvilla      | trissur     | 946007755 |
+| 5698 | DAVID   | david villa 123  | sansford    |  36547892 |
+| 8845 | ADAM    | adams heaven     | trissur     | 624564662 |
+| 8855 | HABEEB  | al-habeebi villa | trissur     | 454564662 |
++------+---------+------------------+-------------+-----------+
+11 rows in set (0.00 sec)
+
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   148 |
+| 1211 | JOLO         |   158 |
+| 1212 | JAYA RICE    |    66 |
+| 1213 | COLGATE      |    76 |
+| 1214 | HARPIC       |    92 |
+| 1234 | NIRMA        |    56 |
+| 1235 | SANDAL       |    66 |
+| 1236 | DOVE         |    97 |
+| 1237 | CHOCHO       |   105 |
+| 1238 | NIRAPARA     |   107 |
+| 1239 | SUNFLOWEROIL |   127 |
++------+--------------+-------+
+11 rows in set (0.00 sec)
+
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    100 |    2346 | 2023-03-11 |
+|    101 |    2347 | 2023-03-12 |
+|    102 |    2346 | 2023-02-13 |
+|    103 |    4650 | 2023-02-03 |
+|    104 |    2346 | 2023-01-20 |
+|    105 |    4657 | 2023-02-03 |
+|    106 |    5698 | 2023-02-03 |
+|    109 |    5698 | 2023-01-28 |
++--------+---------+------------+
+8 rows in set (0.00 sec)
+
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    100 | 1210 |        2 |
+|    100 | 1211 |        4 |
+|    100 | 1237 |        3 |
+|    104 | 1238 |        3 |
+|    106 | 1235 |        6 |
+|    105 | 1234 |        5 |
++--------+------+----------+
+6 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------
+2.      Create a procedure to find greatest of 3 numbers.
+
+i/p
+------
+mysql> create procedure greater(a int,b int,c int)
+    -> begin
+    -> if (a>b) and (a>c) then
+    -> select a as "greater";
+    -> elseif (b>a) and (b>c)then
+    -> select b as "greater";
+    -> else
+    -> select c as "greater";
+    -> end if;
+    -> end
+    -> //
+
+
+mysql> call greater(1,2,3);//
+
+
+o/p
+----
+Query OK, 0 rows affected (0.00 sec)
+
++---------+
+| greater |
++---------+
+|       3 |
++---------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+3.      Create a procedure to display invoice details of a particular customer.
+
+i/p
+-----
+mysql> create procedure invdet(n varchar(30))
+    -> begin
+    -> select customer.name,Invoice_master.*,product.pname,Invoice_item.pid,Invoice_item.quantity from Invoice_item inner join Invoice_master on Invoice_master.inv_id=Invoice_item.inv_id inner join product on product.p_id=Invoice_item.pid inner join customer on customer.c_id=Invoice_master.cust_id where customer.name=n;
+    -> end
+    -> //
+
+
+mysql> CALL invdet("RAM")
+    -> //
+
+O/P
+------
+Query OK, 0 rows affected (0.00 sec)
+
+
++------+--------+---------+------------+----------+------+----------+
+| name | inv_id | cust_id | inv_date   | pname    | pid  | quantity |
++------+--------+---------+------------+----------+------+----------+
+| RAM  |    100 |    2346 | 2023-03-11 | SUNLIGHT | 1210 |        2 |
+| RAM  |    100 |    2346 | 2023-03-11 | JOLO     | 1211 |        4 |
+| RAM  |    100 |    2346 | 2023-03-11 | CHOCHO   | 1237 |        3 |
+| RAM  |    104 |    2346 | 2023-01-20 | NIRAPARA | 1238 |        3 |
++------+--------+---------+------------+----------+------+----------+
+4 rows in set (0.05 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+
