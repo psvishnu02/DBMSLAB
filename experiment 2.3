@@ -1,0 +1,94 @@
+                                           EXPERIMENT NO: 2.3	-PL/SQL PROGRAMS – TRIGGER
+                                     ================================================================
+
+1. Create a trigger to handle updates to the customer table.
+
+i/p
+-----
+mysql> create trigger cust
+    -> before update
+    -> on customer
+    -> for each row
+    -> begin 
+    -> insert into customer1 set c_id=new.c_id,name=new.name;
+    -> end
+    -> //
+
+
+mysql> update customer set name="sabumon" where c_id=4657;
+    -> //
+
+mysql> select * from customer1;
+    -> //
+
+
+o/p
+-----
+Query OK, 0 rows affected (0.48 sec)
+
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
++------+---------+---------+------+-------+
+| c_id | name    | address | city | ph_no |
++------+---------+---------+------+-------+
+| 4657 | sabumon | NULL    | NULL |  NULL |
++------+---------+---------+------+-------+
+1 row in set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Create a trigger to handle inserts to the product relation ( if price < 5 the set price to 10).
+
+i/p
+-------
+mysql> select * from product;
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   148 |
+| 1211 | JOLO         |   158 |
+| 1212 | JAYA RICE    |    66 |
+| 1213 | COLGATE      |    76 |
+| 1214 | HARPIC       |    92 |
+| 1234 | NIRMA        |    56 |
+| 1235 | SANDAL       |    66 |
+| 1236 | DOVE         |    97 |
+| 1237 | CHOCHO       |   105 |
+| 1238 | NIRAPARA     |   107 |
+| 1239 | SUNFLOWEROIL |   127 |
++------+--------------+-------+
+11 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql>  create trigger p_relation before insert on product for each row begin if new.price < 5 then set new.price=10;end if; end //
+
+mysql> insert into product values(1240,'CENTER FRESH',2);//
+
+
+mysql> SELECT * FROM product;
+    -> //
+
+o/p
+----
+Query OK, 0 rows affected (0.11 sec)
+
+Query OK, 1 row affected (0.08 sec)
+
++------+--------------+-------+
+| p_id | pname        | price |
++------+--------------+-------+
+| 1210 | SUNLIGHT     |   148 |
+| 1211 | JOLO         |   158 |
+| 1212 | JAYA RICE    |    66 |
+| 1213 | COLGATE      |    76 |
+| 1214 | HARPIC       |    92 |
+| 1234 | NIRMA        |    56 |
+| 1235 | SANDAL       |    66 |
+| 1236 | DOVE         |    97 |
+| 1237 | CHOCHO       |   105 |
+| 1238 | NIRAPARA     |   107 |
+| 1239 | SUNFLOWEROIL |   127 |
+| 1240 | CENTER FRESH |    10 |
++------+--------------+-------+
+12 rows in set (0.00 sec)
+
