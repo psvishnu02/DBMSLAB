@@ -1,0 +1,129 @@
+                                                    Assignment 3: NoSQL-CRUD
+                                                  ==============================
+
+1.      Write a MongoDB query to create an INVOICE database and collections (CUSTOMER, PRODUCT) and its corresponding documents.
+
+i/p
+-----
+
+> use invoicedb
+switched to db invoicedb
+> db.createCollection("customer")
+{ "ok" : 1 }
+> db.createCollection("product")
+{ "ok" : 1 }
+> db.customer.insertMany([{c_id:"001",name:"peter parkor",city:"kondotty",age:"89"},
+... {c_id:"002",name:"steven strainge",city:"ponnani",age:"64"},
+... {c_id:"003",name:"tony stark",city:"edavanna",age:"42"},
+... {c_id:"002",name:"steve rogers",city:"muvattupuzha",age:"100"},
+... {c_id:"002",name:"bruce banner",city:"thamarassery",age:"55"},
+... {c_id:"002",name:"nick fury",city:"vattavada",age:"55"}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("648050cbe78c289b58cf4a91"),
+		ObjectId("648050cbe78c289b58cf4a92"),
+		ObjectId("648050cbe78c289b58cf4a93"),
+		ObjectId("648050cbe78c289b58cf4a94"),
+		ObjectId("648050cbe78c289b58cf4a95"),
+		ObjectId("648050cbe78c289b58cf4a96")
+	]
+}
+
+
+> db.product.insertMany([{p_id:"100",p_name:"horlicks",price:"300"},
+... {p_id:"101",p_name:"boost",price:"3050"},
+... {p_id:"102",p_name:"bornvita",price:"400"},
+... {p_id:"103",p_name:"complan",price:"350"},
+... {p_id:"104",p_name:"safola oats",price:"40"},
+... {p_id:"105",p_name:"sunlight wp",price:"25"},
+... {p_id:"106",p_name:"harphic 500",price:"75"},
+... {p_id:"107",p_name:"parle-g biscut",price:"20"},
+... {p_id:"108",p_name:"parle lays",price:"10"}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("64805446e78c289b58cf4a97"),
+		ObjectId("64805446e78c289b58cf4a98"),
+		ObjectId("64805446e78c289b58cf4a99"),
+		ObjectId("64805446e78c289b58cf4a9a"),
+		ObjectId("64805446e78c289b58cf4a9b"),
+		ObjectId("64805446e78c289b58cf4a9c"),
+		ObjectId("64805446e78c289b58cf4a9d"),
+		ObjectId("64805446e78c289b58cf4a9e"),
+		ObjectId("64805446e78c289b58cf4a9f")
+	]
+}
+
+
+db.customer.find()
+{ "_id" : ObjectId("648050cbe78c289b58cf4a91"), "c_id" : "001", "name" : "peter parkor", "city" : "kondotty", "age" : "89" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a92"), "c_id" : "002", "name" : "steven strainge", "city" : "ponnani", "age" : "64" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a93"), "c_id" : "003", "name" : "tony stark", "city" : "edavanna", "age" : "42" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a94"), "c_id" : "002", "name" : "steve rogers", "city" : "muvattupuzha", "age" : "100" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a95"), "c_id" : "002", "name" : "bruce banner", "city" : "thamarassery", "age" : "55" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a96"), "c_id" : "002", "name" : "nick fury", "city" : "vattavada", "age" : "55" }
+
+
+> db.product.find()
+{ "_id" : ObjectId("64805446e78c289b58cf4a97"), "p_id" : "100", "p_name" : "horlicks", "price" : "300" }
+{ "_id" : ObjectId("64805446e78c289b58cf4a98"), "p_id" : "101", "p_name" : "boost", "price" : "3050" }
+{ "_id" : ObjectId("64805446e78c289b58cf4a99"), "p_id" : "102", "p_name" : "bornvita", "price" : "400" }
+{ "_id" : ObjectId("64805446e78c289b58cf4a9a"), "p_id" : "103", "p_name" : "complan", "price" : "350" }
+{ "_id" : ObjectId("64805446e78c289b58cf4a9b"), "p_id" : "104", "p_name" : "safola oats", "price" : "40" }
+{ "_id" : ObjectId("64805446e78c289b58cf4a9c"), "p_id" : "105", "p_name" : "sunlight wp", "price" : "25" }
+{ "_id" : ObjectId("64805446e78c289b58cf4a9d"), "p_id" : "106", "p_name" : "harphic 500", "price" : "75" }
+{ "_id" : ObjectId("64805446e78c289b58cf4a9e"), "p_id" : "107", "p_name" : "parle-g biscut", "price" : "20" }
+{ "_id" : ObjectId("64805446e78c289b58cf4a9f"), "p_id" : "108", "p_name" : "parle lays", "price" : "10" }
+> 
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+2.      Write a MongoDB query to find all documents from the collection CUSTOMER
+
+i/p
+-----
+> db.customer.find()
+
+o/p
+-----
+{ "_id" : ObjectId("648050cbe78c289b58cf4a91"), "c_id" : "001", "name" : "peter parkor", "city" : "kondotty", "age" : "89" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a92"), "c_id" : "002", "name" : "steven strainge", "city" : "ponnani", "age" : "64" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a93"), "c_id" : "003", "name" : "tony stark", "city" : "edavanna", "age" : "42" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a94"), "c_id" : "002", "name" : "steve rogers", "city" : "muvattupuzha", "age" : "100" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a95"), "c_id" : "002", "name" : "bruce banner", "city" : "thamarassery", "age" : "55" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a96"), "c_id" : "002", "name" : "nick fury", "city" : "vattavada", "age" : "55" }
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+3.      Write a MongoDB query to update the city in the collection CUSTOMER.
+
+i/p
+-----
+> db.customer.update({"city":"vattavada"},{$set:{"city":"moonnar"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+
+> db.customer.find()
+{ "_id" : ObjectId("648050cbe78c289b58cf4a91"), "c_id" : "001", "name" : "peter parkor", "city" : "kondotty", "age" : "89" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a92"), "c_id" : "002", "name" : "steven strainge", "city" : "ponnani", "age" : "64" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a93"), "c_id" : "003", "name" : "tony stark", "city" : "edavanna", "age" : "42" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a94"), "c_id" : "002", "name" : "steve rogers", "city" : "muvattupuzha", "age" : "100" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a95"), "c_id" : "002", "name" : "bruce banner", "city" : "thamarassery", "age" : "55" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a96"), "c_id" : "002", "name" : "nick fury", "city" : "moonnar", "age" : "55" }
+> 
+
+-----------------------------------------------------------------------------------
+4.      Write a MongoDB query to delete the first matched document whose city is “ponnani”.
+
+i/p
+-----
+> db.customer.deleteOne({city:"ponnani"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+> db.customer.find()
+{ "_id" : ObjectId("648050cbe78c289b58cf4a91"), "c_id" : "001", "name" : "peter parkor", "city" : "kondotty", "age" : "89" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a93"), "c_id" : "003", "name" : "tony stark", "city" : "edavanna", "age" : "42" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a94"), "c_id" : "002", "name" : "steve rogers", "city" : "muvattupuzha", "age" : "100" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a95"), "c_id" : "002", "name" : "bruce banner", "city" : "thamarassery", "age" : "55" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a96"), "c_id" : "002", "name" : "nick fury", "city" : "moonnar", "age" : "55" }
+> 
+
