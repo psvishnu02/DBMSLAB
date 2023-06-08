@@ -1,0 +1,99 @@
+                                                 Assignment 4: Retrieving Data
+                                              ====================================
+
+db.customer.find()
+{ "_id" : ObjectId("648050cbe78c289b58cf4a91"), "c_id" : "001", "name" : "peter parkor", "city" : "kondotty", "age" : "89" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a92"), "c_id" : "002", "name" : "steven strainge", "city" : "ponnani", "age" : "64" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a93"), "c_id" : "003", "name" : "tony stark", "city" : "edavanna", "age" : "42" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a94"), "c_id" : "002", "name" : "steve rogers", "city" : "muvattupuzha", "age" : "100" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a95"), "c_id" : "002", "name" : "bruce banner", "city" : "thamarassery", "age" : "55" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a96"), "c_id" : "002", "name" : "nick fury", "city" : "moonnar", "age" : "55" }
+
+
+
+1.      Write a MongoDB query to display the customer documents having city ‘kondotty’,’moonnar’.
+
+i/p
+-----
+>  db.customer.find({$or:[{city:"kondotty"},{city:"moonnar"}]}).pretty()
+{
+	"_id" : ObjectId("648050cbe78c289b58cf4a91"),
+	"c_id" : "001",
+	"name" : "peter parkor",
+	"city" : "kondotty",
+	"age" : "89"
+}
+{
+	"_id" : ObjectId("648050cbe78c289b58cf4a96"),
+	"c_id" : "002",
+	"name" : "nick fury",
+	"city" : "moonnar",
+	"age" : "55"
+}
+> 
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+2.     Write a MongoDB query to display all customer documents who have age >50.
+
+i/p
+-----
+> db.customer.find({age:{$gt:"50"}}).pretty()
+{
+	"_id" : ObjectId("648050cbe78c289b58cf4a91"),
+	"c_id" : "001",
+	"name" : "peter parkor",
+	"city" : "kondotty",
+	"age" : "89"
+}
+{
+	"_id" : ObjectId("648050cbe78c289b58cf4a95"),
+	"c_id" : "002",
+	"name" : "bruce banner",
+	"city" : "thamarassery",
+	"age" : "55"
+}
+{
+	"_id" : ObjectId("648050cbe78c289b58cf4a96"),
+	"c_id" : "002",
+	"name" : "nick fury",
+	"city" : "moonnar",
+	"age" : "55"
+}
+> 
+---------------------------------------------------------------------------------------------------------------------------------------------
+3.      Write a MongoDB query to find customer documents who not live in ‘moonnar’.
+
+> db.customer.find({city:{$ne:"moonnar"}}).pretty()
+{
+	"_id" : ObjectId("648050cbe78c289b58cf4a91"),
+	"c_id" : "001",
+	"name" : "peter parkor",
+	"city" : "kondotty",
+	"age" : "89"
+}
+{
+	"_id" : ObjectId("648050cbe78c289b58cf4a93"),
+	"c_id" : "003",
+	"name" : "tony stark",
+	"city" : "edavanna",
+	"age" : "42"
+}
+{
+	"_id" : ObjectId("648050cbe78c289b58cf4a94"),
+	"c_id" : "002",
+	"name" : "steve rogers",
+	"city" : "muvattupuzha",
+	"age" : "100"
+}
+{
+	"_id" : ObjectId("648050cbe78c289b58cf4a95"),
+	"c_id" : "002",
+	"name" : "bruce banner",
+	"city" : "thamarassery",
+	"age" : "55"
+}
+> 
+
+
+
+
