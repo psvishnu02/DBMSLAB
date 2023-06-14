@@ -1,0 +1,38 @@
+                                    Assignment 5: NoSQL – AGGREGATE FUNCTIONS AND REGULAR EXPRESSIONS
+                                 ----------------------------------------------------------------------
+
+1.      Write a MongoDB query to sort customer details in ascending order of their name.
+
+> db.customer.find().sort({name:1})
+
+{ "_id" : ObjectId("648050cbe78c289b58cf4a95"), "c_id" : "002", "name" : "bruce banner", "city" : "thamarassery", "age" : "55" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a96"), "c_id" : "002", "name" : "nick fury", "city" : "moonnar", "age" : "55" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a91"), "c_id" : "001", "name" : "peter parkor", "city" : "kondotty", "age" : "89" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a94"), "c_id" : "002", "name" : "steve rogers", "city" : "muvattupuzha", "age" : "100" }
+{ "_id" : ObjectId("648050cbe78c289b58cf4a93"), "c_id" : "003", "name" : "tony stark", "city" : "edavanna", "age" : "42" }
+> 
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+2.      Write a MongoDB query to count number of customers in each city.
+
+> db.customer.aggregate([{$group:{_id:"$city",total:{$sum:1}}}])
+
+{ "_id" : "moonnar", "total" : 1 }
+{ "_id" : "kondotty", "total" : 2 }
+{ "_id" : "edavanna", "total" : 1 }
+{ "_id" : "muvattupuzha", "total" : 1 }
+{ "_id" : "thamarassery", "total" : 1 }
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+3.      Write a MongoDB query to find minimum and maximum age in each city.
+
+> db.customer.aggregate([{$group:{_id:"$city",max_age:{$max:"$age"},min_age:{$min:"$age"}}}])
+
+{ "_id" : "moonnar", "max_age" : "55", "min_age" : "55" }
+{ "_id" : "kondotty", "max_age" : "89", "min_age" : "35" }
+{ "_id" : "edavanna", "max_age" : "42", "min_age" : "42" }
+{ "_id" : "muvattupuzha", "max_age" : "100", "min_age" : "100" }
+{ "_id" : "thamarassery", "max_age" : "55", "min_age" : "55" }
+> 
+
