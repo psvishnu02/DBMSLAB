@@ -1,0 +1,69 @@
+                                                  Assignment No: 6 NoSQL – ADMINISTRATION
+                                                --------------------------------------------
+1.      Write a MongoDB query to create a user “Admin” and grant the read role in the INVOICE database.
+
+> use admindb
+switched to db admindb
+
+> db.createUser({user: "Admin",pwd:"Vishnu",roles: [{ role: "read", db: "invoicedb" }]})
+Successfully added user: {
+	"user" : "Admin",
+	"roles" : [
+		{
+			"role" : "read",
+			"db" : "invoicedb"
+		}
+	]
+}
+> 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+2.      Write a MongoDB query to create the backup for the INVOICE database.
+
+ksb@ksb-OptiPlex-3060:~$ mongodump --db invoicedb
+2023-06-15T14:49:33.610+0530	writing invoicedb.product to dump/invoicedb/product.bson
+2023-06-15T14:49:33.722+0530	done dumping invoicedb.product (9 documents)
+2023-06-15T14:49:33.732+0530	writing invoicedb.customer to dump/invoicedb/customer.bson
+2023-06-15T14:49:33.734+0530	done dumping invoicedb.customer (6 documents)
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+3.      Write a MongoDB query to restore a particular database or a collection.
+
+> 
+> use invoicedb
+switched to db invoicedb
+> db.dropDatabase()
+{ "dropped" : "invoicedb", "ok" : 1 }
+> 
+> show dbs
+admin   0.000GB
+comp    0.000GB
+config  0.000GB
+local   0.000GB
+tempdb  0.000GB
+
+ksb@ksb-OptiPlex-3060:~$ mongorestore --db invoicedb dump/invoicedb
+2023-06-15T14:52:44.800+0530	The --db and --collection flags are deprecated for this use-case; please use --nsInclude instead, i.e. with --nsInclude=${DATABASE}.${COLLECTION}
+2023-06-15T14:52:44.801+0530	building a list of collections to restore from dump/invoicedb dir
+2023-06-15T14:52:44.801+0530	reading metadata for invoicedb.customer from dump/invoicedb/customer.metadata.json
+2023-06-15T14:52:44.801+0530	reading metadata for invoicedb.product from dump/invoicedb/product.metadata.json
+2023-06-15T14:52:45.084+0530	restoring invoicedb.product from dump/invoicedb/product.bson
+2023-06-15T14:52:45.095+0530	finished restoring invoicedb.product (9 documents, 0 failures)
+2023-06-15T14:52:45.192+0530	restoring invoicedb.customer from dump/invoicedb/customer.bson
+2023-06-15T14:52:45.203+0530	finished restoring invoicedb.customer (6 documents, 0 failures)
+2023-06-15T14:52:45.203+0530	no indexes to restore for collection invoicedb.customer
+2023-06-15T14:52:45.203+0530	no indexes to restore for collection invoicedb.product
+2023-06-15T14:52:45.203+0530	15 document(s) restored successfully. 0 document(s) failed to restore.
+ksb@ksb-OptiPlex-3060:~$ 
+
+> show dbs
+admin      0.000GB
+comp       0.000GB
+config     0.000GB
+invoicedb  0.000GB
+local      0.000GB
+tempdb     0.000GB
+> 
+
